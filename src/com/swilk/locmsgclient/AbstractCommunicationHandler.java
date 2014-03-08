@@ -111,13 +111,14 @@ public abstract class AbstractCommunicationHandler {
 			String request_url = "";
 			JSONObject parsedJSON = new JSONObject(jsonData);
 			Iterator<String> jsonIterator;
-			boolean firstRun = false;
+			boolean firstRun = true; 
 			for(jsonIterator = parsedJSON.keys(); jsonIterator.hasNext();) 
 			{
 				String key = jsonIterator.next();
 				if(firstRun)
 				{
 					request_url += host + "?" + key + "=" + parsedJSON.getString(key);
+                    firstRun = false;
 				}
 				else
 				{
