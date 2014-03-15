@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
+import com.swilk.locmsgclient.network.LocationCommunicationHandler;
 
 import android.location.Location;
 import android.os.AsyncTask;
@@ -35,6 +36,8 @@ import android.widget.Toast;
 public class MainActivity extends FragmentActivity implements GooglePlayServicesClient.ConnectionCallbacks,
 GooglePlayServicesClient.OnConnectionFailedListener {
 	
+	public static final String MESSAGE_SERVER = "http://ec2-54-186-48-0.us-west-2.compute.amazonaws.com/messages/mobile";
+	
 	LocationCommunicationHandler locationManager;
 
 	@Override
@@ -45,7 +48,9 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		updateLocButton.setOnClickListener(new updateLocButtonHandler());
 		Button sendMessageButton = (Button)findViewById(R.id.button2);
 		sendMessageButton.setOnClickListener(new sendMessageButtonHandler());
-		this.locationManager = new LocationCommunicationHandler(this, this, this, "http://192.168.1.3/messages/mobile");
+		Button getMessagesButton = (Button)findViewById(R.id.button3);
+		getMessagesButton.setOnClickListener(new getMessagesButtonHandler());
+		this.locationManager = new LocationCommunicationHandler(this, this, this, MESSAGE_SERVER);
 	}
 
 	@Override
@@ -118,6 +123,20 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		}
 		
 	}
+	
+	private class getMessagesButtonHandler implements View.OnClickListener
+	{
+
+		@Override
+		public void onClick(View v) {
+			locationManager.getMessages();
+			
+				
+			
+		}
+		
+	}
+	
 	
 
 }

@@ -22,17 +22,8 @@
         android:layout_alignTop="@+id/textView2"
         android:layout_marginLeft="68dp"
         android:layout_toRightOf="@+id/textView2"
-        android:text="&lt;Not Found Yet>"
+        android:text="N/A"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textMultiLine" />
 
     <TextView
         android:id="@+id/TextView01"
@@ -42,31 +33,54 @@
         android:layout_alignParentTop="true"
         android:text="@string/location" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
+        android:layout_above="@+id/button2"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_marginBottom="47dp"
-        android:text="Message:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:text="Update Location" />
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="72dp"
+        android:text="Get Location" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="70dp"
-        android:text="Submit message" />
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/editText1"
+        android:text="Submit" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="64dp"
+        android:text="Message:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="18dp"
+        android:text="Get Messages" />
 
 </RelativeLayout>
