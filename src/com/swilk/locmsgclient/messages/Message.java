@@ -2,14 +2,22 @@ package com.swilk.locmsgclient.messages;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 @TargetApi(19)
-public class Message {
+public class Message implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
 	private double lat, lng;
@@ -19,10 +27,10 @@ public class Message {
 	public static ArrayList<Message> decodeMessage(String jsonData) throws JSONException
 	{
 		//Convert to JSON
-		JSONObject convertedJSON = new JSONObject(jsonData);
+		//JSONObject convertedJSON = new JSONObject(jsonData);
 		
 		//Convert to JSONArray
-		JSONArray messagesArray = new JSONArray(convertedJSON);
+		JSONArray messagesArray = new JSONArray(jsonData);
 		
 		//Iterate over the objects, create new messages
 		ArrayList<Message> newMessages = new ArrayList<Message>();
@@ -35,7 +43,9 @@ public class Message {
 			String created_at = curMessage.getString("created_at");
 			String updated_at = curMessage.getString("updated_at");
 			String msg = curMessage.getString("msg");
-			newMessages.add(new Message(id, lat, lng, created_at, updated_at, msg));
+			Message newMessage = new Message(id, lat, lng, created_at, updated_at, msg);
+			System.out.println(newMessage);
+			newMessages.add(newMessage);
 		}
 		return newMessages;
 		
@@ -97,6 +107,11 @@ public class Message {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	
+	public String toString()
+	{
+		return "MESSAGE: " + this.msg + " && LAT = " + this.lat + " && LONG = " + this.lng;
 	}
 	
 

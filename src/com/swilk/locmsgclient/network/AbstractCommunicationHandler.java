@@ -22,6 +22,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.swilk.locmsgclient.messages.MessagesManager;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -91,8 +93,8 @@ public abstract class AbstractCommunicationHandler {
 				HttpClient httpClient = new DefaultHttpClient();
 				//Post the JSON.
 				HttpResponse serverResponse = httpClient.execute(request);
-				Log.d("SERVER RESPONSE: ", EntityUtils.toString(serverResponse.getEntity()));
-				return serverResponse.toString();
+				//Log.d("SERVER RESPONSE: ", EntityUtils.toString(serverResponse.getEntity()));
+				return EntityUtils.toString(serverResponse.getEntity());
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -142,6 +144,12 @@ public abstract class AbstractCommunicationHandler {
 			HttpGet httpGet = new HttpGet(request_url);
 			return httpGet;
 		}
+		
+		 protected void onPostExecute(String result) {
+			 MessagesManager messagesManager = MessagesManager.getInstance();
+	         Runnable worker = messagesManager.new MessageWorker(result);
+	         THREAD_POOL_EXECUTOR.execute(worker);
+	     }
 		
 	}
 	
