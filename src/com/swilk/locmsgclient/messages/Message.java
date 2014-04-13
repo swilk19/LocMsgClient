@@ -33,7 +33,7 @@ public class Message {
 			double lat = curMessage.getDouble("lat");
 			double lng = curMessage.getDouble("long");
 			String created_at = curMessage.getString("created_at");
-			String updated_at = curMessage.getString("udated_at");
+			String updated_at = curMessage.getString("updated_at");
 			String msg = curMessage.getString("msg");
 			newMessages.add(new Message(id, lat, lng, created_at, updated_at, msg));
 		}
