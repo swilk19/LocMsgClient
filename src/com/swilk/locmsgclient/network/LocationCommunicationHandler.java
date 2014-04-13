@@ -39,7 +39,7 @@ public class LocationCommunicationHandler extends AbstractCommunicationHandler
 	
 	public void postLocation(Map<String, String> additions)
 	{
-		this.host = "http://ec2-54-186-48-0.us-west-2.compute.amazonaws.com/messages/mobile";
+		this.host = "http://162.243.90.103/messages/mobile";
 		Location lastLoc = locationClient.getLastLocation();
 		HashMap<String, String> jsonMap = new HashMap<String, String>();
 		jsonMap.put("lat", "" + lastLoc.getLatitude());
@@ -50,7 +50,7 @@ public class LocationCommunicationHandler extends AbstractCommunicationHandler
 	
 	public void getMessages()
 	{
-		this.host = "http://ec2-54-186-48-0.us-west-2.compute.amazonaws.com/messages/find";
+		this.host = "http://162.243.90.103/messages/find";
 		HashMap<String, String> getParams = new HashMap<String, String>();
 		Location lastLoc = locationClient.getLastLocation();
 		getParams.put("r",radius);

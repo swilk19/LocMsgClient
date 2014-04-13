@@ -25,6 +25,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
@@ -36,13 +37,16 @@ import android.widget.Toast;
 public class MainActivity extends FragmentActivity implements GooglePlayServicesClient.ConnectionCallbacks,
 GooglePlayServicesClient.OnConnectionFailedListener {
 	
-	public static final String MESSAGE_SERVER = "http://ec2-54-186-48-0.us-west-2.compute.amazonaws.com/messages/mobile";
+	public static final String MESSAGE_SERVER = "http://162.243.90.103/messages/mobile";
+	
+	public static Context activityContext;
 	
 	LocationCommunicationHandler locationManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activityContext = this.getApplicationContext();
 		setContentView(R.layout.activity_main);
 		Button updateLocButton = (Button)findViewById(R.id.button1);
 		updateLocButton.setOnClickListener(new updateLocButtonHandler());
