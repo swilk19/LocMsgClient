@@ -60,11 +60,22 @@ public class MessagesManager implements Serializable {
 		{
 			//Get the id
 			int id = m.getId();
-			//Put the message, ID into the hashmap
+			//check if it exists
+			if(messagesMap.containsKey(id))
+			{
+				System.out.println("Skipping message, already exists: " + m);
+				continue;
+			}
+			//Put the message, ID into the hashmap if it doesnt exist
 			messagesMap.put(id, m);
 		}
 		//Save whenever I add more messages
 		this.save();
+	}
+	
+	public synchronized ArrayList<Message> getAllMessages()
+	{
+		return new ArrayList<Message>(this.messagesMap.values());
 	}
 	
 	private HashMap<Integer, Message> load()

@@ -59,5 +59,15 @@ public class LocationCommunicationHandler extends AbstractCommunicationHandler
 		this.sendGet(getParams);
 	}
 	
+	public double getLat()
+	{
+		return this.locationClient.getLastLocation().getLatitude();
+	}
+	
+	public double getLong()
+	{
+		return this.locationClient.getLastLocation().getLongitude();
+	}
+	
 
 }

@@ -1,33 +1,18 @@
 package com.swilk.locmsgclient;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.location.LocationClient;
 import com.swilk.locmsgclient.network.LocationCommunicationHandler;
 
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +46,20 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.item1:
+	        	Intent i = new Intent(getApplicationContext(), MapActivity.class);
+	        	i.putExtra("lat", locationManager.getLat());
+	        	System.out.println("Putting " + locationManager.getLat() + " in the intent.");
+	        	i.putExtra("long", locationManager.getLong());
+	        	System.out.println("Putting " + locationManager.getLong() + " in the intent.");
+	        	startActivity(i);	
+	    }
 		return true;
 	}
 

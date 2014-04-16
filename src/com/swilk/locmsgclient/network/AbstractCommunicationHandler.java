@@ -145,6 +145,7 @@ public abstract class AbstractCommunicationHandler {
 			return httpGet;
 		}
 		
+		//Forgive me lords of OOP, for I have sinned and made a lazy solution to this. At least it works.
 		 protected void onPostExecute(String result) {
 			 MessagesManager messagesManager = MessagesManager.getInstance();
 	         Runnable worker = messagesManager.new MessageWorker(result);
